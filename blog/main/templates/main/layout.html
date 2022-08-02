@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,58 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Noto+Sans:wght@500&family=Plus+Jakarta+Sans:wght@300&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
+        
     <style>
+
+        .buttonWatch{
+            display: inline;
+            display: inline-flex;
+            align-items: center;
+            width: 136px;
+            line-height: 40px;
+            font-weight: 400;
+            border-radius: 15px;
+            border-color: rgb(74, 52, 87);
+            border: 2px;
+            background-color: rgb(51, 32, 63);
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+        }
+
+        .buttonBack{
+            display: inline-flex;
+            align-items: center;
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 400;
+            border: 0;
+            background-color: rgb(0, 0, 0, 0);
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+        }
+
+        .buttonPlayer{
+            min-width: 215.2px;
+            min-height: 50px;
+            font-family: inherit;
+            appearance: none;
+            border: 0;
+            /* border-radius: 5px; */
+            background: rgb(32, 25, 48);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .buttonPlayer:hover{
+            background: #400292;
+        }
+        .buttonPlayer:focus{
+            outline: none;
+            /* box-shadow: 0 0 0 4px #cbd6ee; */
+            background: rgb(139, 41, 41);
+        }
+
         a {
             color: #000000;
             text-decoration: none;
@@ -37,7 +88,63 @@
             transform: scale(1.05);
             /* Увеличиваем масштаб */
         }
+        /* footer{
+
+        } */
+        .preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            /* фоновый цвет */
+            background:  linear-gradient(to top right, #7c89c2, #6c3bad);
+            z-index: 1001;
+        }
+
+        .preloader__image {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            width: 70px;
+            height: 70px;
+            margin-top: -35px;
+            margin-left: -35px;
+            text-align: center;
+            animation: preloader-rotate 2s infinite linear;
+        }
+
+        @keyframes preloader-rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loaded_hiding .preloader {
+            transition: 0.3s opacity;
+            opacity: 0;
+        }
+
+        .loaded .preloader {
+            display: none;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded_hiding');
+            window.setTimeout(function () {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, 500);
+        }
+
+        function linkFilm(id) {
+            return location.href = id + "/";
+        }
+    </script>
+
 
 </head>
 
@@ -51,6 +158,7 @@
             </div>
         </div>
     </header>
+    
     {% block content %}
     {% endblock %}
 <footer style="

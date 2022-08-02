@@ -2,15 +2,75 @@
 {% extends 'main/layout.html' %}
 {% block content %}
 
-    <div class="container-xl">
-        <div class="col-12 my-4">
-            <div class="p-5" style="height: 90px; background-color: rgb(255, 255, 255);"></div>
+<div class="preloader">
+    <svg class="preloader__image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="currentColor"
+            d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z">
+        </path>
+    </svg>
+</div>
+
+<div class="col-12 mb-4">
+
+
+    <div id="carouselExampleInterval" style="overflow: hidden; position: relative; width: 100%; height: 500px;" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {%for film in films %}
+            {% if film.0.name != "none" %}
+            <div class="carousel-item active" data-bs-interval="8000">
+
+                <div style="position:absolute; width: 100%; height: 500px; background-color: rgba(0, 0, 0, 0.514); z-index: 100;">
+                    <div class="container-xl">
+                        <div class="row">
+                            <div class="col-6" style="color: rgb(255, 255, 255);">
+                                <p class="mt-4" style="display: inline-block; font-weight:900; font-size:35px;">{{film.1.name}}</p>
+                                <p class="mt-4" style="font-size:20px; font-weight:500; color: rgba(253, 253, 253, 0.5);">
+                                    {{film.1.description}}</p>
+                
+                                <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{film.1.id_film}}')"
+                                    style="background-color: rgb(63, 37, 155);">
+                                    <span style="display: flex; padding-right: 5px; padding-left: 17px;">
+                                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg>
+                                    </span> Смотреть
+                                </button>
+                
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="{{film.0.img.url}}" style=" transform: translate(0,-10%); width: -webkit-fill-available; z-index: 10;" class="d-block w-100" alt="{{backImg.img.url}}">
+            
+            </div>
+            {% endif %}
+            {% endfor %}
+
         </div>
+        <button id="nextbutton" class="carousel-control-prev" style="z-index: 110;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" style="z-index: 110;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+    <!-- <div style="overflow: hidden; position: relative; width: 100%; height: 500px;">
+        <img src="{{backImg.img.url}}" style="position: absolute; transform: translate(0,-10%); width: -webkit-fill-available;  " alt="">
+    </div> -->
+
+</div>
+    <div class="container-xl">
 
         <div class="col-12">
             <div class="row">
                 {% for i in game %}
-                <div class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
+                <div id="{{i.id_film}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
                     <a href="{{i.id_film}}/">
                         <div class="cell" style="text-align: center;">
                             <img class="scale" src="{{i.url_img}}" style="height: 300px; width: 200px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);" alt="">

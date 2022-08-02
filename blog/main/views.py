@@ -3,6 +3,7 @@ from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
 from films.models import Film
+from main.models import backImg
 
 import fake_useragent
 import requests
@@ -10,9 +11,16 @@ from bs4 import BeautifulSoup
 
 def index(request):
     game = Film.objects.all()
-
-    print(os.path.abspath(os.curdir))
-    return render(request, 'main/index.html', {"game": game})
+    img = backImg.objects.all()
+    newFilm = []
+    for i in range(len(img)):
+        new = []
+        new.append(img[i])
+        new.append(Film.objects.get(id_film=f"{img[i].name}"))
+        newFilm.append(new)
+        
+    # print(os.path.abspath(os.curdir))
+    return render(request, 'main/index.html', {"game": game, "imgs": img, "films": newFilm})
     # return render(request, 'main/game.html', {"game": game[0]})
     pass
 
@@ -46,7 +54,11 @@ def pars(request,idkino):
     premiere = film_info['premiere']['world'][:10]
     description = film_info['description']
     rating = film_info['rating']['kp']
-    age = f"{film_info['ageRating']}+"
+    try:
+        age = f"{film_info['ageRating']}+"
+    except:
+        age = "none"
+        
     if age == "None+":
         age = "none"
 
