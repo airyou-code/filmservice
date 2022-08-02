@@ -15,9 +15,41 @@
 
     <div id="carouselExampleInterval" style="overflow: hidden; position: relative; width: 100%; height: 500px;" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
+
+            <div class="carousel-item active" data-bs-interval="7000">
+            
+                <div style="position:absolute; width: 100%; height: 500px; background-color: rgba(0, 0, 0, 0.514); z-index: 100;">
+                    <div class="container-xl">
+                        <div class="row">
+                            <div class="col-6" style="color: rgb(255, 255, 255);">
+                                <p class="mt-4" style="display: inline-block; font-weight:900; font-size:35px;">{{first.1.name}}</p>
+                                <p class="mt-4" style="font-size:20px; font-weight:500; color: rgba(253, 253, 253, 0.5);">
+                                    {{first.1.description}}</p>
+            
+                                <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{first.1.id_film}}')"
+                                    style="background-color: rgb(63, 37, 155);">
+                                    <span style="display: flex; padding-right: 5px; padding-left: 17px;">
+                                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg>
+                                    </span> Смотреть
+                                </button>
+            
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <img src="{{first.0.img.url}}" style=" transform: translate(0,-10%); width: -webkit-fill-available; z-index: 10;"
+                    class="d-block w-100" alt="">
+            
+            </div>
             {%for film in films %}
             {% if film.0.name != "none" %}
-            <div class="carousel-item active" data-bs-interval="8000">
+            <div class="carousel-item" data-bs-interval="8000">
 
                 <div style="position:absolute; width: 100%; height: 500px; background-color: rgba(0, 0, 0, 0.514); z-index: 100;">
                     <div class="container-xl">

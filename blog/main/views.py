@@ -13,14 +13,19 @@ def index(request):
     game = Film.objects.all()
     img = backImg.objects.all()
     newFilm = []
+    firstPoster = []
     for i in range(len(img)):
-        new = []
-        new.append(img[i])
-        new.append(Film.objects.get(id_film=f"{img[i].name}"))
-        newFilm.append(new)
+        if i == 0:
+            firstPoster.append(img[i])
+            firstPoster.append(Film.objects.get(id_film=f"{img[i].name}"))
+        else:
+            new = []
+            new.append(img[i])
+            new.append(Film.objects.get(id_film=f"{img[i].name}"))
+            newFilm.append(new)
         
     # print(os.path.abspath(os.curdir))
-    return render(request, 'main/index.html', {"game": game, "imgs": img, "films": newFilm})
+    return render(request, 'main/index.html', {"game": game, "imgs": img, "films": newFilm, "first": firstPoster})
     # return render(request, 'main/game.html', {"game": game[0]})
     pass
 
@@ -58,7 +63,7 @@ def pars(request,idkino):
         age = f"{film_info['ageRating']}+"
     except:
         age = "none"
-        
+       
     if age == "None+":
         age = "none"
 
