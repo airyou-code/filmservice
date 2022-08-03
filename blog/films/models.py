@@ -30,6 +30,11 @@ class Year(models.Model):
     def __str__(self):
         return f"{self.id}. {self.name}"
 
+class Type(models.Model):
+    name = models.CharField(max_length=10, default='none')
+    def __str__(self):
+        return f"{self.id}. {self.name}"
+
 
 class Film(models.Model):
     name = models.CharField(max_length=200, default='none')
@@ -42,6 +47,7 @@ class Film(models.Model):
     tg_country = models.ManyToManyField(Country)
     tg_year = models.ManyToManyField(Year)
     tg_age = models.ManyToManyField(Age)
+    tg_type = models.ManyToManyField(Type)
 
     yearProd = models.CharField(max_length=10, default='none')#
     country = models.CharField(max_length=40, default='none')#

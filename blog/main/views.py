@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
-from films.models import Film
+from films.models import Film, Year, Age, Country, Ganer, Type
 from main.models import backImg
 
 import fake_useragent
@@ -23,7 +23,6 @@ def index(request):
             new.append(img[i])
             new.append(Film.objects.get(id_film=f"{img[i].name}"))
             newFilm.append(new)
-        
     # print(os.path.abspath(os.curdir))
     return render(request, 'main/index.html', {"game": game, "imgs": img, "films": newFilm, "first": firstPoster})
     # return render(request, 'main/game.html', {"game": game[0]})
@@ -35,62 +34,113 @@ def info(request, pk):
     pass
 
 def pars(request,idkino):
-    film_info = KinoSearch(idkino)
-    if film_info == "none":
+    try:
+        Film.objects.get(id_film=f"{idkino}")
+    except:
+        film_info = KinoSearch(idkino)
+        if film_info == "none":
+            return HttpResponseRedirect(f"/")
+
+        name = film_info['name']
+        id_film = film_info['id']
+        url_img = film_info['poster']['url']
+        yearProd = film_info['year']
+
+        try:
+            type_f = Type.objects.get(name=film_info['type'])
+        except:
+            type_f = Type.objects.create(name=film_info['type'])
+
+        try:
+            year_tg = Year.objects.get(name=f"{yearProd}")
+        except:
+            year_tg = Year.objects.create(name=f"{yearProd}")
+
+
+        country = ""
+        country_tg = []
+        for i in film_info['countries']:
+            try:
+                country_tg.append(Country.objects.get(name=f"{i['name']}"))
+            except:
+                country_tg.append(Country.objects.create(name=f"{i['name']}"))
+            country = country + i['name'] + ","
+
+        genre = ""
+        genre_tg = []
+        for i in film_info['genres']:
+            try:
+                genre_tg.append(Ganer.objects.get(name=f"{i['name']}"))
+            except:
+                genre_tg.append(Ganer.objects.create(name=f"{i['name']}"))
+            genre = genre + i['name'] + ", "
+
+        try:
+            Budget = f"{film_info['budget']['currency']}{film_info['budget']['value']}"
+        except:
+            Budget = "none"
+
+        try:
+            Fees = f"{film_info['fees']['world']['currency']}{film_info['fees']['world']['value']}"
+        except:
+            Fees = "none"
+        premiere = film_info['premiere']['world'][:10]
+        description = film_info['description']
+        rating = film_info['rating']['kp']
+
+        age_tg = []
+        try:
+            age = f"{film_info['ageRating']}+"
+
+            try:
+                age_tg.append(Age.objects.get(name=age))
+            except:
+                age_tg.append(Age.objects.create(name=age))
+        except:
+            age = "none"
+        
+        if age == "None+":
+            age = "none"
+
+
+        try:
+            angl_name = film_info["alternativeName"]
+        except:
+            angl_name = "none"
+            pass
+
+        film = Film.objects.create(
+            name=name,
+            id_film=id_film,
+            url_img=url_img,
+            yearProd=yearProd,
+            country=country,
+            genre=genre,
+            Budget=Budget,
+            Fees=Fees,
+            premiere=premiere,
+            description=description,
+            rating=rating,
+            Age=age,
+            angl_name=angl_name
+            )
+
+
+        film.tg_year.add(year_tg.id)
+        try:
+            film.tg_age.add(age_tg[0].id)
+        except:
+            pass
+        for i in genre_tg:
+            film.tg_genre.add(i.id)
+        for i in country_tg:
+            film.tg_country.add(i.id)
+        
+        film.tg_type.add(type_f.id)
+
+
         return HttpResponseRedirect(f"/")
-    name = film_info['name']
-    id_film = film_info['id']
-    url_img = film_info['poster']['url']
-    yearProd = film_info['year']
-    country = ""
-    for i in film_info['countries']:
-        country = country + i['name'] + ","
-
-    genre = ""
-    for i in film_info['genres']:
-        genre = genre + i['name'] + ", "
-
-    try:
-        Budget = f"{film_info['budget']['currency']}{film_info['budget']['value']}"
-    except:
-        Budget = "none"
-
-    Fees = f"{film_info['fees']['world']['currency']}{film_info['fees']['world']['value']}"
-    premiere = film_info['premiere']['world'][:10]
-    description = film_info['description']
-    rating = film_info['rating']['kp']
-    try:
-        age = f"{film_info['ageRating']}+"
-    except:
-        age = "none"
-       
-    if age == "None+":
-        age = "none"
-
-
-    try:
-        angl_name = film_info["alternativeName"]
-    except:
-        angl_name = "none"
         pass
-
-    film = Film.objects.create(
-        name=name,
-        id_film=id_film,
-        url_img=url_img,
-        yearProd=yearProd,
-        country=country,
-        genre=genre,
-        Budget=Budget,
-        Fees=Fees,
-        premiere=premiere,
-        description=description,
-        rating=rating,
-        Age=age,
-        angl_name=angl_name
-        )
-    return HttpResponseRedirect(f"/")
-    pass
 
 def KinoSearch(id="none"):
     if id != "none":

@@ -17,7 +17,12 @@
                     <div class="row" >
                         <div class="col-4" >
                             <div class="cell" style="text-align: center;">
-                                <img src="{{film.url_img}}" style="height: 450px; width: 300px; border-radius: 5px;" alt="">
+                                {% if film.rating != "none" %}
+                                <div style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right,rgb(156, 1, 1), rgb(224, 15, 15)); text-align: center;">
+                                    <p style="padding-top: 5px; color: rgb(255, 255, 255); font-weight:800; font-size: 20px;">{{film.rating}}</p>
+                                </div>
+                                {% endif %}
+                                <img src="{{film.url_img}}" style="height: 450px; width: 300px; z-index: 50; border-radius: 5px;" alt="">
                             </div>
                         </div>
                         <div class="col-8">
@@ -29,13 +34,15 @@
                             <br>
                             {% endif %}
                             <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="buttonClick()" data-click-kinoplayer="kinoplayertop-videocdn" >
-                                <span style="display: flex; padding-right: 5px; padding-left: 17px;">
+                                <span style="display: flex; padding-right: 5px; padding-left: 11.5px;">
                                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
                                         stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </span> Смотреть
                             </button>
+
+
                             <p style="font-weight:750; font-size:25px;">О фильме</p>
 
                             {% if film.country != "none" %}
