@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
-from films.models import Film, Year, Age, Country, Ganer, Type
+from films.models import Film, Year, Age, Country, Ganer, Type, Persons
 from main.models import backImg
 
 import fake_useragent
@@ -10,8 +10,11 @@ import requests
 from bs4 import BeautifulSoup
 
 def index(request):
-    game = Film.objects.all()
+    films = Film.objects.filter(tg_type=Type.objects.get(name="movie").id)
     img = backImg.objects.all()
+    series = []
+    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
+    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="animated-series").id))
     newFilm = []
     firstPoster = []
     for i in range(len(img)):
@@ -24,27 +27,48 @@ def index(request):
             new.append(Film.objects.get(id_film=f"{img[i].name}"))
             newFilm.append(new)
     # print(os.path.abspath(os.curdir))
-    return render(request, 'main/index.html', {"game": game, "imgs": img, "films": newFilm, "first": firstPoster})
+    return render(request, 'main/index.html', {"films": films, "series": series, "imgs": img, "postrs": newFilm, "first": firstPoster})
     # return render(request, 'main/game.html', {"game": game[0]})
     pass
 
 def info(request, pk):
     film = Film.objects.get(id_film=pk)
-    return render(request, 'main/game.html', {"film": film})
+    persons = film.tg_persons.all()
+    return render(request, 'main/game.html', {"film": film, "persons": persons})
     pass
 
-def pars(request,idkino):
+
+def pars_film(request):
+    films = ['1282688', '4400203', '558393', '1219909', '572032', '1322324', '1115098', '1309570', '4368595',
+             '590286', '4291715', '468373', '1355142', '4308624', '1100425', '1009513', '655800', '685246']
+    
+    for i in films:
+        pars(i)
+
+    return HttpResponseRedirect(f"/")
+
+
+
+def pars(idkino):
     try:
         Film.objects.get(id_film=f"{idkino}")
+        return
     except:
         film_info = KinoSearch(idkino)
         if film_info == "none":
-            return HttpResponseRedirect(f"/")
+            return
 
         name = film_info['name']
         id_film = film_info['id']
-        url_img = film_info['poster']['url']
-        yearProd = film_info['year']
+        try:
+            url_img = film_info['poster']['url']
+        except:
+            url_img = "none"
+
+        try:
+            yearProd = film_info['year']
+        except:
+            yearProd = "none"
 
         try:
             type_f = Type.objects.get(name=film_info['type'])
@@ -84,9 +108,21 @@ def pars(request,idkino):
             Fees = f"{film_info['fees']['world']['currency']}{film_info['fees']['world']['value']}"
         except:
             Fees = "none"
-        premiere = film_info['premiere']['world'][:10]
-        description = film_info['description']
-        rating = film_info['rating']['kp']
+        
+        try:
+            premiere = film_info['premiere']['world'][:10]
+        except:
+            premiere = "none"
+
+        try:    
+            description = film_info['description']
+        except:
+            description = "none"
+
+        try:    
+            rating = film_info['rating']['kp']
+        except:
+            rating = "none"
 
         age_tg = []
         try:
@@ -108,6 +144,10 @@ def pars(request,idkino):
         except:
             angl_name = "none"
             pass
+
+        if angl_name == None:
+            angl_name = "none"
+
 
         film = Film.objects.create(
             name=name,
@@ -136,11 +176,80 @@ def pars(request,idkino):
         for i in country_tg:
             film.tg_country.add(i.id)
         
+        pers = person(film_info)
+        if pers != None:
+            for i in pers:
+                film.tg_persons.add(i.id)
+
         film.tg_type.add(type_f.id)
 
 
-        return HttpResponseRedirect(f"/")
+        return
         pass
+
+
+def person(json_film):
+    try:
+        json_persons = json_film["persons"]
+        if json_persons == None:
+            return None
+    except:
+        return None
+    persons = []
+    for i in json_persons:
+        try:
+            p = Persons.objects.get(id_persons=f"{i['id']}")
+        except:
+            try:
+                id_persons = f"{i['id']}"
+            except:
+                id_persons = "none"
+
+            try:
+                name = i['name']
+            except:
+                name = "none"
+
+            try:
+                enName = i['enName']
+                if enName == None:
+                    enName = "none"
+            except:
+                enName = "none"
+
+            try:
+                description = i['description']
+                print(description)
+                if description == None:
+                    description = "none"
+            except:
+                description = "none"
+
+            try:
+                enProfession = i['enProfession']
+                if enProfession == None:
+                    enProfession = "none"
+            except:
+                enProfession = "none"
+
+            try:
+                photo = i['photo']
+                if photo == None:
+                    photo = "none"
+            except:
+                photo = "none"
+
+            p = Persons.objects.create(
+                id_persons=id_persons,
+                name=name,
+                enName=enName,
+                description=description,
+                enProfession=enProfession,
+                photo=photo
+            )
+            persons.append(p)
+
+    return persons
 
 def KinoSearch(id="none"):
     if id != "none":

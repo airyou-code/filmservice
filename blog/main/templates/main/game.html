@@ -107,27 +107,36 @@
                         </div>
                         
                     </div>
-                        <script>
+                    
+                    <div class="row mx-4">
+                        {% for i in persons %}
+                        {% if i.name != i.enName %}
+                            <div id="{{i.id_persons}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
+                                <a href="{{i.id_persons}}/">
+                                    <div style="text-align: center;">
+                                        <img class="scale" src="{{i.photo}}"
+                                            style="height: 240px; width: 160px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);"
+                                            alt="">
+                                        <p class="my-2" style="font-size:16px; font-weight:500;">
+                                            {% if i.name != "" %}
+                                                {{i.name}}
+                                            {% else %} 
+                                                {{i.enName}}
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                        <!-- <script>
                             function buttonClick() {
-                                // const film =  document.getElementById('film');
-                                // film.scrollIntoView(false);
                                 document.getElementById("blockbut").setAttribute("style", "");
                                 document.getElementById('film').scrollIntoView(false);
-                                // player = document.getElementById("kinoplayertop")
-                                // console.log(player.getAttribute("data-player"))
-
-                                // if (a==0){
-                                //     player.setAttribute("data-player", "trailer")
-                                // }
-                                // else{
-                                //     player.setAttribute("data-player", "bazon")   
-                                //     but.textContent = "lol"
-                                // }
-                                // but = document.getElementById("view2")
-                                // return location.href = "/";
                             }
-                            
-                        </script>
+                        </script> -->
                     <script src="//kinoplayer.top/top.js"></script>
                     <div class="row">
                         <div class="col-1"></div>

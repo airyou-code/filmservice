@@ -35,6 +35,15 @@ class Type(models.Model):
     def __str__(self):
         return f"{self.id}. {self.name}"
 
+class Persons(models.Model):
+    id_persons = models.CharField(max_length=100)
+    name = models.CharField(max_length=200, default='none')
+    enName = models.CharField(max_length=200, default='none')
+    description = models.CharField(max_length=200, default='none')
+    enProfession = models.CharField(max_length=200, default='none')
+    photo = models.CharField(max_length=300, default='none')
+    def __str__(self):
+        return f"{self.id}. {self.name}"
 
 class Film(models.Model):
     name = models.CharField(max_length=200, default='none')
@@ -48,6 +57,7 @@ class Film(models.Model):
     tg_year = models.ManyToManyField(Year)
     tg_age = models.ManyToManyField(Age)
     tg_type = models.ManyToManyField(Type)
+    tg_persons = models.ManyToManyField(Persons, default='none')
 
     yearProd = models.CharField(max_length=10, default='none')#
     country = models.CharField(max_length=40, default='none')#
