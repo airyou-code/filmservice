@@ -77,9 +77,17 @@ class Film(models.Model):
     dateTime = models.DateTimeField('dateTime', auto_now=True)
 
     def __str__(self):
+        return f"({self.yearProd}) {self.name}"
+
+class Group(models.Model):
+    name = models.CharField(max_length=200, default='none')
+    img = models.ImageField('Img', upload_to=get_image_path, default='none')
+    description = models.TextField(default='none')
+    films = models.ManyToManyField(Film, default='none')
+    
+
+    def __str__(self):
         return f"{self.id}. {self.name}"
-
-
 
 
 

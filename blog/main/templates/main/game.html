@@ -3,7 +3,7 @@
     <div class="container-xl">
         <div class="row">
             <div class="col-12">
-                <div style=" background-color: rgb(255, 255, 255);">
+                <div style=" background-color: rgb(255, 255, 255); min-height: 800px;">
                     <button class="buttonBack my-4 mx-5" onclick="history.back();">
                         <span style="display: flex; padding-right: 2px;">
                             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
@@ -18,7 +18,7 @@
                         <div class="col-4" >
                             <div class="cell" style="text-align: center;">
                                 {% if film.rating != "none" %}
-                                <div style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right,rgb(156, 1, 1), rgb(224, 15, 15)); text-align: center;">
+                                <div style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right, rgb(242, 133, 0), rgb(243, 213, 18)); text-align: center;">
                                     <p style="padding-top: 5px; color: rgb(255, 255, 255); font-weight:800; font-size: 20px;">{{film.rating}}</p>
                                 </div>
                                 {% endif %}
@@ -98,17 +98,19 @@
                         </div>
 
                     </div>
-                    <div class="col-12 mb-5">
+                    <div class="col-12 mt-5">
                         <div style="border-bottom: 1px solid rgba(0,0,0,0.1);margin-left: 15px; margin-right: 15px;">
-                            <p style="font-size:20px; font-weight:500; color: rgb(0, 0, 0); margin-left: 50px; margin-bottom: 0px;">Описание</p>
+                                <button id="buttonD1" class="buttonOn" onclick="buttonOnOff(1)">Описание</button>
+                                <button id="buttonD2" class="buttonOff" style="margin-left: 15px;" onclick="buttonOnOff(2)">Актёры</button>
                         </div>
-                        <div class="my-3 mx-5">
+                        <div id="description" class="my-3 mx-5" style="">
                             <p style="font-size:17px; font-weight:400; color: rgba(0, 0, 0, 0.5);">{{film.description}}</p>
                         </div>
                         
                     </div>
                     
-                    <div class="row mx-4">
+                    <div id="persons" class="row mx-4 my-4" style="display: none; height: 0px;">
+                        <p>Актёры</p>
                         {% for i in persons %}
                         {% if i.name != i.enName %}
                             <div id="{{i.id_persons}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
@@ -141,7 +143,7 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div id="film" class="col-10 mb-5">
-                            <div id="blockbut" class="btn-group" style="visibility: hidden;">
+                            <div id="blockbut" class="btn-group" style="display: none;">
                                 <button type="button" class="buttonPlayer" data-click-kinoplayer="kinoplayertop-videocdn">Смотреть</button>
                                 <button type="button" class="buttonPlayer " data-click-kinoplayer="kinoplayertop-ustore">Плеер 2</button>
                                 <button type="button" class="buttonPlayer " data-click-kinoplayer="kinoplayertop-tabus">Плеер 3</button>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
-from films.models import Film, Year, Age, Country, Ganer, Type, Persons
+from films.models import Film, Year, Age, Country, Ganer, Type, Persons, Group
 from main.models import backImg
 
 import fake_useragent
@@ -10,7 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 
 def index(request):
-    films = Film.objects.filter(tg_type=Type.objects.get(name="movie").id)
+    group = Group.objects.get(name="main_films")
+    films = group.films.filter(tg_type=Type.objects.get(name="movie").id)
     img = backImg.objects.all()
     series = []
     series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
@@ -34,7 +35,7 @@ def index(request):
 def info(request, pk):
     film = Film.objects.get(id_film=pk)
     persons = film.tg_persons.all()
-    return render(request, 'main/game.html', {"film": film, "persons": persons})
+    return render(request, 'main/game.html', {"film": film, "persons": persons[:12]})
     pass
 
 
@@ -235,8 +236,10 @@ def person(json_film):
             try:
                 photo = i['photo']
                 if photo == None:
+                    continue
                     photo = "none"
             except:
+                continue
                 photo = "none"
 
             p = Persons.objects.create(
