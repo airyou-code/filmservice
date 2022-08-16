@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('pars/', views.pars_film),
-    path('<int:pk>/', views.info)
+    path('<int:pk>/', views.info),
+    path('account/', include('user.urls')),
 ]

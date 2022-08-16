@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
-from films.models import Film, Year, Age, Country, Ganer, Type, Persons, Group
+from films.models import Film, Year, Age, Country, Ganer, Type, Persons, Group, Comment
+from django.contrib.auth.models import User
+from films.forms import CommentForm
+
 from main.models import backImg
 
 import fake_useragent
@@ -27,15 +30,64 @@ def index(request):
             new.append(img[i])
             new.append(Film.objects.get(id_film=f"{img[i].name}"))
             newFilm.append(new)
+    
+    user = User.objects.all()
+    print(user[1])
     # print(os.path.abspath(os.curdir))
-    return render(request, 'main/index.html', {"films": films, "series": series, "imgs": img, "postrs": newFilm, "first": firstPoster})
+    return render(request, 'main/index.html', { "films": films,
+                                                "series": series,
+                                                "imgs": img,
+                                                "postrs": newFilm,
+                                                "first": firstPoster})
     # return render(request, 'main/game.html', {"game": game[0]})
     pass
+
+def post_detail(request, id):
+    film = Film.objects.filter(id=id)
+    # List of active comments for this post
+    comments = film.comments.filter(active=True)
+
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = film
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    # return render(request,'blog/post/detail.html',
+    #              {'post': film,
+    #               'comments': comments,
+    #               'comment_form': comment_form})
 
 def info(request, pk):
     film = Film.objects.get(id_film=pk)
     persons = film.tg_persons.all()
-    return render(request, 'main/game.html', {"film": film, "persons": persons[:12]})
+    # List of active comments for this post
+    comments = film.comments.filter(active=True)
+
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.film = film
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    
+    return render(request, 'main/game.html', {  "film": film,
+                                                "persons": persons[:12],
+                                                "comments": comments,
+                                                "comment_form": comment_form,
+                                             })
     pass
 
 

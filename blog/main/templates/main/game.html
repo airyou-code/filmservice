@@ -102,12 +102,44 @@
                         <div style="border-bottom: 1px solid rgba(0,0,0,0.1);margin-left: 15px; margin-right: 15px;">
                                 <button id="buttonD1" class="buttonOn" onclick="buttonOnOff(1)">Описание</button>
                                 <button id="buttonD2" class="buttonOff" style="margin-left: 15px;" onclick="buttonOnOff(2)">Актёры</button>
+                                <button id="buttonD3" class="buttonOff" style="margin-left: 15px;" onclick="buttonOnOff(3)">Комментарии</button>
                         </div>
                         <div id="description" class="my-3 mx-5" style="">
                             <p style="font-size:17px; font-weight:400; color: rgba(0, 0, 0, 0.5);">{{film.description}}</p>
                         </div>
                         
                     </div>
+
+                    <div class="col-12 mx-4 my-4">
+                        {% with comments.count as total_comments %}
+                            <h2>
+                                {{ total_comments }} comment{{ total_comments|pluralize }}
+                            </h2>
+                        {% endwith %}
+                        {% for comment in comments %}
+                            <div class="comment">
+                                <p class="info">
+                                    Comment {{ forloop.counter }} by {{ comment.name }}
+                                    {{ comment.created }}
+                                </p>
+                                {{ comment.body|linebreaks }}
+                            </div>
+                        {% empty %}
+                            <p>There are no comments yet.</p>
+                        {% endfor %}
+
+                        {% if new_comment %}
+                            <h2>Your comment has been added.</h2>
+                        {% else %}
+                            <h2>Add a new comment</h2>
+                            <form action="." method="post">
+                                {{ comment_form.as_p }}
+                                {% csrf_token %}
+                                <p><input type="submit" value="Add comment"></p>
+                            </form>
+                        {% endif %}
+                    </div>
+
                     
                     <div id="persons" class="row mx-4 my-4" style="display: none; height: 0px;">
                         <p>Актёры</p>

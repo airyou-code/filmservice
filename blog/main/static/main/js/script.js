@@ -28,6 +28,7 @@ function buttonOnOff(i) {
         document.getElementById("buttonD1").setAttribute("class", "buttonOn");
         document.getElementById("description").setAttribute("style", "");
 
+
         document.getElementById("buttonD2").setAttribute("class", "buttonOff");
         document.getElementById("persons").setAttribute("style", "display: none; height: 0px;");
     }
@@ -39,7 +40,7 @@ function buttonOnOff(i) {
         document.getElementById("persons").setAttribute("style", "");
     }
     if (i == 3){
-        document.getElementById("blockbut").setAttribute("style", "");
+        // document.getElementById("blockbut").setAttribute("style", "");
     }
 }
 
