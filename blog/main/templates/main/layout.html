@@ -26,7 +26,13 @@
         height: 75px;">
         <div class="container">
             <div class="col-3">
-
+		    {% if user.is_authenticated %}
+            <li style="color: rgb(255, 255, 255)"><a style="color:rgb(255, 255, 255)" href="">hi,&#160;{{ user.username }}</a></li>
+            <li><a style="color: rgb(255, 255, 255)" href="/account/logout/">Log out</a></li>
+            {% else %}
+            <li><a style="color: rgb(255, 255, 255)" href="/account/register/">sign up</a></li>
+            <li><a style="color: rgb(255, 255, 255)" href="/account/login/">log in</a></li>
+            {% endif %}
             </div>
         </div>
     </header>

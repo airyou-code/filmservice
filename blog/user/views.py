@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, UserRegistrationForm
 
 def user_login(request):
@@ -13,6 +14,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    return HttpResponseRedirect(f"/")
                     return HttpResponse('Authenticated successfully')
                 else:
                     return HttpResponse('Disabled account')
@@ -22,6 +24,10 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'user/login.html', {'form': form})
 
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(f"/")
+    pass
 
 def register(request):
     if request.method == 'POST':
