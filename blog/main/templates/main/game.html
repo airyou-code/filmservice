@@ -109,37 +109,43 @@
                         </div>
                         
                     </div>
-
+                    
                     <div class="col-12 mx-4 my-4">
                         {% with comments.count as total_comments %}
-                            <h2>
-                                {{ total_comments }} comment{{ total_comments|pluralize }}
-                            </h2>
+                        <h2>
+                            {{ total_comments }} comment{{ total_comments|pluralize }}
+                        </h2>
                         {% endwith %}
-                        {% for comment in comments %}
+                        
+                        
+                        <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 3s">
+                            {% for comment in comments %}
                             <div class="comment">
                                 <p class="info">
-                                    Comment {{ forloop.counter }} by {{ comment.name }}
+                                    Comment {{ forloop.counter }} by {{ comment.user.username }}
                                     {{ comment.created }}
                                 </p>
                                 {{ comment.body|linebreaks }}
                             </div>
-                        {% empty %}
+                            {% empty %}
                             <p>There are no comments yet.</p>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
 
-                        {% if new_comment %}
+
+                            
+                            {% if new_comment %}
                             <h2>Your comment has been added.</h2>
-                        {% else %}
+                            {% else %}
                             <h2>Add a new comment</h2>
                             <form action="." method="post">
                                 {{ comment_form.as_p }}
                                 {% csrf_token %}
                                 <p><input type="submit" value="Add comment"></p>
                             </form>
-                        {% endif %}
+                            {% endif %}
+                        
                     </div>
-
                     
                     <div id="persons" class="row mx-4 my-4" style="display: none; height: 0px;">
                         <p>Актёры</p>

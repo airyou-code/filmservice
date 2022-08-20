@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.from email.policy import default
+from django.contrib.auth.models import User
 from django.db import models
 import hashlib
 import os
@@ -83,6 +84,7 @@ class Film(models.Model):
 
 class Comment(models.Model):
     film = models.ForeignKey(Film, on_delete = models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, default='', on_delete = models.CASCADE, related_name='user')
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()

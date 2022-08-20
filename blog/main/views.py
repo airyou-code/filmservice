@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
@@ -31,8 +32,6 @@ def index(request):
             new.append(Film.objects.get(id_film=f"{img[i].name}"))
             newFilm.append(new)
     
-    user = User.objects.all()
-    print(user[1])
     # print(os.path.abspath(os.curdir))
     return render(request, 'main/index.html', { "films": films,
                                                 "series": series,
@@ -63,6 +62,11 @@ def post_detail(request, id):
     #              {'post': film,
     #               'comments': comments,
     #               'comment_form': comment_form})
+def get_comments(request, pk):
+    film = Film.objects.get(id_film=pk)
+    comments = film.comments.filter(active=True)
+    data = {"comments": comments}
+    return render(request, 'main/comments.html', data)
 
 def info(request, pk):
     film = Film.objects.get(id_film=pk)
@@ -72,29 +76,34 @@ def info(request, pk):
 
     if request.method == 'POST':
         # A comment was posted
-        comment_form = CommentForm(data=request.POST)
+        user = request.user
+        if user.is_anonymous:
+            return HttpResponseRedirect(f"/")
+        comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
             new_comment.film = film
-            # Save the comment to the database
+            new_comment.user = user
             new_comment.save()
+            return HttpResponseRedirect(request.path) 
     else:
         comment_form = CommentForm()
+
+    data = { "film": film,
+            "persons": persons[:12],
+            "comments": comments,
+            "comment_form": comment_form,
+            }
+    a = request
     
-    return render(request, 'main/game.html', {  "film": film,
-                                                "persons": persons[:12],
-                                                "comments": comments,
-                                                "comment_form": comment_form,
-                                             })
+    return render(request, 'main/game.html', data)
     pass
 
 
 def pars_film(request):
-    # films = ['1282688', '4400203', '558393', '1219909', '572032', '1322324', '1115098', '1309570', '4368595',
-    #          '590286', '4291715', '468373', '1355142', '4308624', '1100425', '1009513', '655800', '685246', '4312383']
-    films = ['4312383']
+    films = ['1282688', '4400203', '558393', '1219909', '572032', '1322324', '1115098', '1309570', '4368595',
+             '590286', '4291715', '468373', '1355142', '4308624', '1100425', '1009513', '655800', '685246', '4312383']
+    # films = ['4312383']
     
     for i in films:
         pars(i)
@@ -255,6 +264,7 @@ def person(json_film):
     for i in json_persons:
         try:
             p = Persons.objects.get(id_persons=f"{i['id']}")
+            persons.append(p)
         except:
             try:
                 id_persons = f"{i['id']}"
