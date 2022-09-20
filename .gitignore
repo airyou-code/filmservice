@@ -3,3 +3,10 @@
 /ex1.json
 /t.py
 venv
+blog/main/__pycache__
+blog/films/__pycache__
+blog/blog/__pycache__
+blog/user/__pycache__
+blog/user/migrations/__pycache__
+blog/main/migrations/__pycache__
+blog/films/migrations/__pycache__
