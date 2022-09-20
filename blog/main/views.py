@@ -11,7 +11,6 @@ from main.models import backImg
 
 import fake_useragent
 import requests
-from bs4 import BeautifulSoup
 
 def index(request):
     group = Group.objects.get(name="main_films")
