@@ -2,12 +2,12 @@ from django.contrib.auth.models import User
 from django import forms
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Login'}))
+    password = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
     class Meta:
         model = User
