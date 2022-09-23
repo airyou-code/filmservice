@@ -118,7 +118,7 @@
                         {% endwith %}
                         
                         
-                        <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 3s">
+                        <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 20s">
                             {% for comment in comments %}
                             <div class="comment">
                                 <p class="info">

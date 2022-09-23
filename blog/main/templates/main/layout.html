@@ -23,8 +23,8 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: rgb(245, 245, 245);">
-    <header class="p-3 bg-dark text-white">
+<body style="background-color: rgb(245, 245, 245);min-height: 100%;">
+    <header class="p-3 bg-dark text-white fixed-top">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -32,11 +32,11 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    <li><a id="nav-btn1" href="/" class="nav-link px-2 text-white" onclick="navbar_btn(1)">Home</a></li>
+                    <li><a id="nav-btn2" href="#" class="nav-link px-2 text-white">Features</a></li>
+                    <li><a id="nav-btn3" href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a id="nav-btn4" href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                    <li><a id="nav-btn5" href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -44,12 +44,17 @@
                 </form>
 
                 <div class="text-end">
-                    <a href="/account/login/" style="color: rgb(239, 246, 253);">
-                        <button type="button" href="/account/login/" class="btn btn-outline-light me-2">Login</button>
-                    </a>
-                    <a href="/account/register/">
-                        <button type="button" href="/account/register/" class="btn btn-warning">Sign-up</button>
-                    </a>
+                    {% if user.is_authenticated %}
+                        <li style="color: rgb(255, 255, 255)"><a style="color:rgb(255, 255, 255)" href="">hi,&#160;{{ user.username }}</a></li>
+                        <li><a style="color: rgb(255, 255, 255)" href="/account/logout/">Log out</a></li>
+                    {% else %}   
+                        <a href="/account/login/" style="color: rgb(239, 246, 253);">
+                            <button type="button" href="/account/login/" class="btn btn-outline-light me-2">Login</button>
+                        </a>
+                        <a href="/account/register/">
+                            <button type="button" href="/account/register/" class="btn btn-info">Sign-up</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -69,11 +74,15 @@
             </div>
         </div>
     </header> -->
-    
-    {% block content %}
-    {% endblock %}
-<footer class="footer" style="
-        background-color: rgb(32, 25, 48);
-        height: 100px;"></footer>
+    <div style="margin-bottom: 80px; margin-top: 72px; min-height: 69vh">
+        {% block content %}
+        {% endblock %}
+    </div>
+<footer style="
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background-color: rgb(32, 25, 48);  "></footer>
 </body>
 </html>

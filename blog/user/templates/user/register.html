@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html>
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
 
-<body>
+{% block content %}
+
+<div class="text-center my-5 px-md-5">
+    <main class="form-signin w-100 m-auto px-md-5 px-2" style="max-width: 40%;">
     <div id="header">
         <span class="logo">Bookmarks</span>
     </div>
     <h1>Create an account</h1>
     <p>Please, sign up using the following form:</p>
-    <form action="." method="post">
-        {{ user_form.as_p }}
+    <form method="post">
+        {{ user_form|crispy}}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+        <button class="w-100 my-3 btn btn-lg btn-primary" type="submit">Sing in</button>
     </form>
-</body>
-
-</html>
+    </main>
+</div>
+{% endblock %}

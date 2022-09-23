@@ -65,3 +65,15 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+function navbar_btn(btn){
+    switch (btn){
+        case 1:
+            document.getElementById("nav-btn1").setAttribute("class", "nav-link px-2 text-secondary");
+            document.getElementById("nav-btn2").setAttribute("class", "nav-link px-2 text-white");
+            document.getElementById("nav-btn3").setAttribute("class", "nav-link px-2 text-white");
+            document.getElementById("nav-btn4").setAttribute("class", "nav-link px-2 text-white");
+            document.getElementById("nav-btn5").setAttribute("class", "nav-link px-2 text-white");
+        case 2:
+    }
+}
