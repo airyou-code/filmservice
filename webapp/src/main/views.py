@@ -15,19 +15,19 @@ import fake_useragent
 import requests
 
 def index(request):
-    # group = Group.objects.get(name="main_films")
+    group = Group.objects.get(name="main_films")
 
-    search_query = SearchQuery('чел')
-    search_vector = SearchVector('name')
-    search_rank = SearchRank( search_vector, search_query)
+    # search_query = SearchQuery('чел')
+    # search_vector = SearchVector('name')
+    # search_rank = SearchRank( search_vector, search_query)
 
-    films = Film.objects.annotate(rank=search_rank).order_by('-rank').values_list('name', 'rank')
+    # films = Film.objects.annotate(rank=search_rank).order_by('-rank').values_list('name', 'rank')
 
-    # films = group.films.filter(tg_type=Type.objects.get(name="movie").id)
+    films = group.films.filter(tg_type=Type.objects.get(name="movie").id)
     img = backImg.objects.all()
     series = []
-    # series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
-    # series.extend(Film.objects.filter(tg_type=Type.objects.get(name="animated-series").id))
+    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
+    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="animated-series").id))
     newFilm = []
     firstPoster = []
     for i in range(len(img)):

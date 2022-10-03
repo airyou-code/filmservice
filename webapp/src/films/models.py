@@ -32,7 +32,7 @@ class Year(models.Model):
         return f"{self.id}. {self.name}"
 
 class Type(models.Model):
-    name = models.CharField(max_length=10, default='none')
+    name = models.CharField(max_length=30, default='none')
     def __str__(self):
         return f"{self.id}. {self.name}"
 

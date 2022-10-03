@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': 'wnpwawkt',
+        'USER': 'wnpwawkt',
+        'PASSWORD': 'RNmRhGNPfkWh_4eGm59IRhXucL6Ugjpj',
+        'HOST': 'ella.db.elephantsql.com',
+        'PORT': '',
     }
 }
 
