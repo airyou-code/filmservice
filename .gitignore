@@ -11,3 +11,4 @@ webapp/src/user/migrations/__pycache__
 webapp/src/main/migrations/__pycache__
 webapp/src/films/migrations/__pycache__
 webapp/src/blog/__pycache__
+data

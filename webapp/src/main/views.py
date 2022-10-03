@@ -5,7 +5,9 @@ from django.http import HttpResponseRedirect
 import os
 from films.models import Film, Year, Age, Country, Ganer, Type, Persons, Group, Comment
 from django.contrib.auth.models import User
+from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
 from films.forms import CommentForm
+
 
 from main.models import backImg
 
@@ -13,12 +15,19 @@ import fake_useragent
 import requests
 
 def index(request):
-    group = Group.objects.get(name="main_films")
-    films = group.films.filter(tg_type=Type.objects.get(name="movie").id)
+    # group = Group.objects.get(name="main_films")
+
+    search_query = SearchQuery('чел')
+    search_vector = SearchVector('name')
+    search_rank = SearchRank( search_vector, search_query)
+
+    films = Film.objects.annotate(rank=search_rank).order_by('-rank').values_list('name', 'rank')
+
+    # films = group.films.filter(tg_type=Type.objects.get(name="movie").id)
     img = backImg.objects.all()
     series = []
-    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
-    series.extend(Film.objects.filter(tg_type=Type.objects.get(name="animated-series").id))
+    # series.extend(Film.objects.filter(tg_type=Type.objects.get(name="tv-series").id))
+    # series.extend(Film.objects.filter(tg_type=Type.objects.get(name="animated-series").id))
     newFilm = []
     firstPoster = []
     for i in range(len(img)):
@@ -31,7 +40,7 @@ def index(request):
             new.append(Film.objects.get(id_film=f"{img[i].name}"))
             newFilm.append(new)
     
-    # print(os.path.abspath(os.curdir))
+    
     return render(request, 'main/index.html', { "films": films,
                                                 "series": series,
                                                 "imgs": img,
