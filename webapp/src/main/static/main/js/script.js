@@ -27,10 +27,14 @@ function buttonOnOff(i) {
     if (i == 1){
         document.getElementById("buttonD1").setAttribute("class", "buttonOn");
         document.getElementById("description").setAttribute("style", "");
+        document.getElementById("comments").setAttribute("style", "");
 
 
         document.getElementById("buttonD2").setAttribute("class", "buttonOff");
         document.getElementById("persons").setAttribute("style", "display: none; height: 0px;");
+
+        document.getElementById("buttonD3").setAttribute("class", "buttonOff");
+        document.getElementById("comments").setAttribute("style", "display: none; height: 0px;");
     }
     if (i == 2){
         document.getElementById("buttonD1").setAttribute("class", "buttonOff");
@@ -38,9 +42,19 @@ function buttonOnOff(i) {
 
         document.getElementById("buttonD2").setAttribute("class", "buttonOn");
         document.getElementById("persons").setAttribute("style", "");
+
+        document.getElementById("buttonD3").setAttribute("class", "buttonOff");
+        document.getElementById("comments").setAttribute("style", "display: none; height: 0px;");
     }
     if (i == 3){
-        // document.getElementById("blockbut").setAttribute("style", "");
+        document.getElementById("buttonD1").setAttribute("class", "buttonOff");
+        document.getElementById("description").setAttribute("style", "display: none; height: 0px;");
+
+        document.getElementById("buttonD2").setAttribute("class", "buttonOff");
+        document.getElementById("persons").setAttribute("style", "display: none; height: 0px;");
+
+        document.getElementById("buttonD3").setAttribute("class", "buttonOn");
+        document.getElementById("comments").setAttribute("style", "");
     }
 }
 

@@ -110,7 +110,7 @@
                         
                     </div>
                     
-                    <div class="col-12 mx-4 my-4">
+                    <div id="comments" class="col-12 mx-4 my-4" style="display: none; height: 0px;">
                         {% with comments.count as total_comments %}
                         <h2>
                             {{ total_comments }} comment{{ total_comments|pluralize }}
@@ -118,7 +118,7 @@
                         {% endwith %}
                         
                         
-                        <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 20s">
+                        <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 60s">
                             {% for comment in comments %}
                             <div class="comment">
                                 <p class="info">
