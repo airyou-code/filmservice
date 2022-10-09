@@ -82,6 +82,18 @@ class Film(models.Model):
     def __str__(self):
         return f"({self.yearProd}) {self.name}"
 
+    def get_description_to_search(self):
+        if len(self.description) > 100:
+            return self.description[:100]+"..."
+        return self.description
+    
+    def get_description_to_main(self):
+        if len(self.description) > 300:
+            return self.description[:300]+"..."
+        return self.description       
+
+
+
 class Comment(models.Model):
     film = models.ForeignKey(Film, on_delete = models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, default='', on_delete = models.CASCADE, related_name='user')

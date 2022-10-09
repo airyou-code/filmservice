@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+<div class="container-xl">
+    <div style=" background-color: rgb(255, 255, 255); min-height: 800px;">
+        <div class="mx-5 " tyle="min-height: 800px;">
+            <p class="py-3 my-5" style="font-size: 40px; font-weight: 700; ">Результаты поиска по запросу: {{rqserch}}</p>
+            <div class="row">
+                <div class="col-4">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg пример">
+                        <option selected>Откройте это меню выбора</option>
+                        <option value="1">Один</option>
+                        <option value="2">Два</option>
+                        <option value="3">Три</option>
+                    </select>
+
+                    
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <!-- <div hx-get="/comments/{{ film.id_film }}" hx-trigger="every 60s"></div> -->
+                        {% for film in films %}
+                            <div class="col-12" style="height: 140px; border-top: 1px solid rgba(0,0,0,0.1);">
+                                <div class="row p-2">
+                                    <div class="col-2"> 
+                                        <span style="width: 64px; height: 96px;">
+                                            <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}">
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <p style="font-weight: 600;">{{ film.name }}</p>
+                                        <p>Year, time</p>
+                                        <p style="font-size: 10px;">{{ film.get_description_to_search }}</p>
+                                    </div>
+                                    <div class="col-4">
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

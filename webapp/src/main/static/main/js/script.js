@@ -20,7 +20,7 @@ window.onload = function () {
 }
 
 function linkFilm(id) {
-    return location.href = id + "/";
+    return location.href = "film/" + id + "/";
 }
 
 function buttonOnOff(i) {

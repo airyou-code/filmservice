@@ -24,7 +24,7 @@
                             <div class="col-6" style="color: rgb(255, 255, 255);">
                                 <p class="mt-4" style="display: inline-block; font-weight:900; font-size:35px;">{{first.1.name}}</p>
                                 <p class="mt-4" style="font-size:20px; font-weight:500; color: rgba(253, 253, 253, 0.5);">
-                                    {{first.1.description}}</p>
+                                    {{first.1.get_description_to_main}}</p>
             
                                 <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{first.1.id_film}}')"
                                     style="background-color: rgb(63, 37, 155);">
@@ -57,7 +57,7 @@
                             <div class="col-6" style="color: rgb(255, 255, 255);">
                                 <p class="mt-4" style="display: inline-block; font-weight:900; font-size:35px;">{{film.1.name}}</p>
                                 <p class="mt-4" style="font-size:20px; font-weight:500; color: rgba(253, 253, 253, 0.5);">
-                                    {{film.1.description}}</p>
+                                    {{film.1.get_description_to_main}}</p>
                 
                                 <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{film.1.id_film}}')"
                                     style="background-color: rgb(63, 37, 155);">
@@ -103,7 +103,7 @@
             <div class="row">
                 {% for i in films %}
                 <div id="{{i.id_film}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
-                    <a href="{{i.id_film}}/">
+                    <a href="film/{{i.id_film}}/">
                         <div class="cell" style="text-align: center;">
                             <img class="scale" src="{{i.url_img}}" style="height: 300px; width: 200px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);" alt="">
                             <p class="my-2" style="font-size:16px; font-weight:500; text-align: left;">{{i.name}}</p>
@@ -117,7 +117,7 @@
             <div class="row">
                 {% for i in series %}
                 <div id="{{i.id_film}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
-                    <a href="{{i.id_film}}/">
+                    <a href="film/{{i.id_film}}/">
                         <div class="cell" style="text-align: center;">
                             <img class="scale" src="{{i.url_img}}"
                                 style="height: 300px; width: 200px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);"
