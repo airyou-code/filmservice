@@ -2,18 +2,34 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 import os
+
 from .models import Film, Year, Age, Country, Ganer, Type, Persons, Group, Comment
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
 from .forms import CommentForm
 
-def search_film(request):
-    rqserch = request.GET.get("search","человек")
+def search_f(request):
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
+    # param = request.GET.get('param') if request.GET.get('param') is not None else []
+    # param = request.GET._getlist['param']
     vector = SearchVector('name', weight='A') + SearchVector('description', weight='B') + SearchVector('id_film', weight='A')
-    query = SearchQuery(rqserch)
-    film = Film.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
+    # query = SearchQuery(q)
+    # film = Film.objects.annotate(rank=SearchRank(vector, query)).filter(search=SearchQuery(q))
+    # ganers = Ganer.objects.filter(id__in=param)
+    # film = Film.objects.annotate(search=vector).filter(search=q, tg_genre__in=ganers)
+    film = Film.objects.annotate(search=vector).filter(search=q)
+
+    return render(request, 'film/film_list.html', {"films":film})
+
+def search_film(request):
+    # rqserch = request.GET.get("search","человек")
+    # vector = SearchVector('name', weight='A') + SearchVector('description', weight='B') + SearchVector('id_film', weight='A')
+    # query = SearchQuery(rqserch)
+    # film = Film.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
+    ganers = Ganer.objects.all()
+    film = Film.objects.all()
     print(request.GET.get("search","человек"))
-    return render(request, 'film/search.html', {"films":film, "rqserch":rqserch})
+    return render(request, 'film/search.html', {"films":film, "ganers":ganers})
 
 def post_comments(request, id):
     film = Film.objects.filter(id=id)
