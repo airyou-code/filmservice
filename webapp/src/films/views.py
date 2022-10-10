@@ -24,9 +24,11 @@ def search_f(request):
     ganers = Ganer.objects.filter(id__in=param)
     if len(ganers) == 0:
         film = Film.objects.annotate(search=vector).filter(search=q)
-    else:
+    elif q != '':
         film = Film.objects.annotate(search=vector).filter(search=q)
         film = film.filter( tg_genre__in=ganers)
+    else:
+        film = Film.objects.filter( tg_genre__in=ganers)
 
     return render(request, 'film/film_list.html', {"films":film})
 
