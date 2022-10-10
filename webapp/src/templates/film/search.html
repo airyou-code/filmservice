@@ -6,8 +6,19 @@
 
             <p class="py-3" style="font-size: 40px; font-weight: 700; display: inline-block; ">Результаты поиска по запросу:</p>
             <p style="display: inline-block; font-size: 40px; font-weight: 600;" id="result"></p>
+            
+            <form hx-get="search_f/" hx-target="#search-results">
+                <div style="max-width: 400px;">
+                    <input class="form-control my-5"
+                            list="datalistOptions"
+                            id="search"
+                            placeholder="Введите для поиска..."
+                            name="q"
+                    >
 
-            <div style="max-width: 400px;">
+            
+                </div>
+            <!-- <div style="max-width: 400px;">
                 <input class="form-control my-5"
                         list="datalistOptions"
                         id="search"
@@ -17,10 +28,9 @@
                         hx-trigger="keyup changed delay:150ms"
                         hx-target="#search-results"
                 >
-            <form hx-get="search_f/">
 
             
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-4">
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg пример">
@@ -29,13 +39,13 @@
                         <option value="2">Два</option>
                         <option value="3">Три</option>
                     </select>
-
+                    <fieldset>
                     {% for ganer in ganers %}
                     <div class="form-check">
                     <input class="form-check-input"
                             type="checkbox"
                             value="{{ ganer.id }}"
-                            name="param"
+                            name="param_{{ ganer.id }}"
                             id="flexCheckDefault"
                     >
 
@@ -44,6 +54,7 @@
                         </label>
                     </div>
                     {% endfor %}
+                    </fieldset> 
                     <button type="submit" class="btn btn-primary mb-3">Подтвердить личность</button>
                     </form>
                     

@@ -11,13 +11,22 @@ from .forms import CommentForm
 def search_f(request):
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     # param = request.GET.get('param') if request.GET.get('param') is not None else []
-    # param = request.GET._getlist['param']
+    param = []
+    for i in Ganer.objects.all():
+        if request.GET.get(f'param_{i.id}') == None:
+            continue
+        param.append(request.GET.get(f'param_{i.id}'))
+
+    print(param)
     vector = SearchVector('name', weight='A') + SearchVector('description', weight='B') + SearchVector('id_film', weight='A')
     # query = SearchQuery(q)
     # film = Film.objects.annotate(rank=SearchRank(vector, query)).filter(search=SearchQuery(q))
-    # ganers = Ganer.objects.filter(id__in=param)
-    # film = Film.objects.annotate(search=vector).filter(search=q, tg_genre__in=ganers)
-    film = Film.objects.annotate(search=vector).filter(search=q)
+    ganers = Ganer.objects.filter(id__in=param)
+    if len(ganers) == 0:
+        film = Film.objects.annotate(search=vector).filter(search=q)
+    else:
+        film = Film.objects.annotate(search=vector).filter(search=q)
+        film = film.filter( tg_genre__in=ganers)
 
     return render(request, 'film/film_list.html', {"films":film})
 
