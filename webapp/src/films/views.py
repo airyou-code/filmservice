@@ -12,7 +12,8 @@ def search_f(request):
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     # param = request.GET.get('param') if request.GET.get('param') is not None else []
     param = []
-    for i in Ganer.objects.all():
+    all_ganer = Ganer.objects.all()
+    for i in all_ganer:
         if request.GET.get(f'param_{i.id}') == None:
             continue
         param.append(request.GET.get(f'param_{i.id}'))

@@ -7,17 +7,7 @@
             <p class="py-3" style="font-size: 40px; font-weight: 700; display: inline-block; ">Результаты поиска по запросу:</p>
             <p style="display: inline-block; font-size: 40px; font-weight: 600;" id="result"></p>
             
-            <form hx-get="search_f/" hx-target="#search-results">
-                <div style="max-width: 400px;">
-                    <input class="form-control my-5"
-                            list="datalistOptions"
-                            id="search"
-                            placeholder="Введите для поиска..."
-                            name="q"
-                    >
 
-            
-                </div>
             <!-- <div style="max-width: 400px;">
                 <input class="form-control my-5"
                         list="datalistOptions"
@@ -33,6 +23,15 @@
             </div> -->
             <div class="row">
                 <div class="col-4">
+                <form hx-get="search_f/" hx-target="#search-results">
+                    <div style="max-width: 400px;">
+                        <input class="form-control mb-5"
+                                list="datalistOptions"
+                                id="search"
+                                placeholder="Введите для поиска..."
+                                name="q"
+                        >
+                    </div>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg пример">
                         <option selected>Откройте это меню выбора</option>
                         <option value="1">Один</option>
@@ -56,7 +55,7 @@
                     {% endfor %}
                     </fieldset> 
                     <button type="submit" class="btn btn-primary mb-3">Подтвердить личность</button>
-                    </form>
+                </form>
                     
                 </div>
                 <div class="col-8">
