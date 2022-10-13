@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
 from .forms import CommentForm
 
-def search_f(request):
+def search_page(request):
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     # param = request.GET.get('param') if request.GET.get('param') is not None else []
     param = []
@@ -42,6 +42,14 @@ def search_film(request):
     film = Film.objects.all()
     print(request.GET.get("search","человек"))
     return render(request, 'film/search.html', {"films":film, "ganers":ganers})
+
+def search_popup(request):
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
+    vector = SearchVector('name', weight='A') + SearchVector('description', weight='B') + SearchVector('id_film', weight='A')
+    film = Film.objects.annotate(search=vector).filter(search=q)
+    return render(request, 'film/search_popup.html', {"films":film[:4], "q": q},)
+    
+
 
 def post_comments(request, id):
     film = Film.objects.filter(id=id)

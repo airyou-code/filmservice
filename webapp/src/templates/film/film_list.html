@@ -1,17 +1,21 @@
 
 {% for film in films %}
-    <div class="col-12" style="height: 140px; border-top: 1px solid rgba(0,0,0,0.1);">
-        <div class="row p-2">
+    <div class="col-12" style="height: 128px; border-top: 1px solid rgba(0,0,0,0.1);">
+        <div class="row p-3">
             <div class="col-2"> 
                 <span style="width: 64px; height: 96px;">
-                    <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}">
+                    <a href="/film/{{ film.id_film }}/" class="a">
+                        <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}">
+                    </a>
                 </span>
             </div>
             <div class="col-6">
-                <p style="font-weight: 600;">{{ film.name }}</p>
-                <p>{{ film.yearProd }}, time</p>
-                <p style="font-size: 10px;">{{ film.get_description_to_search }}</p>
-            </div>
+                <a href="/film/{{ film.id_film }}/" class="a">
+                    <p style="font-weight: 600; " >{{ film.name }}</p>
+                    <p style="font-size: 10px;">{{ film.get_description_to_search }}</p>
+                </a>
+                </div>
+
             <div class="col-4">
 
             </div>
