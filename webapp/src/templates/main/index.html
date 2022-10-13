@@ -103,7 +103,7 @@
             <div class="row">
                 {% for i in films %}
                 <div id="{{i.id_film}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
-                    <a href="film/{{i.id_film}}/">
+                    <a href="film/{{i.id_film}}/" class="a">
                         <div class="cell" style="text-align: center;">
                             <img class="scale" src="{{i.url_img}}" style="height: 300px; width: 200px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);" alt="">
                             <p class="my-2" style="font-size:16px; font-weight:500; text-align: left;">{{i.name}}</p>
@@ -117,7 +117,7 @@
             <div class="row">
                 {% for i in series %}
                 <div id="{{i.id_film}}" class="col-lg-2 col-sm-6 justify-content-center py-2 px-2">
-                    <a href="film/{{i.id_film}}/">
+                    <a href="film/{{i.id_film}}/" class="a">
                         <div class="cell" style="text-align: center;">
                             <img class="scale" src="{{i.url_img}}"
                                 style="height: 300px; width: 200px; border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.5);"
