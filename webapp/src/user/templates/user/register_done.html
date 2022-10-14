@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% extends 'main/layout.html' %}
+{% block content %}
 
-<body>
-    <div id="header">
-        <span class="logo">Bookmarks</span>
-    </div>
+<div class="align-items-center"></div>
     <h1>Welcome {{ new_user.first_name }}!</h1>
         <p>Your account has been successfully created. Now you can <a href="{% url "login" %}">log in</a>.</p>
-</body>
 
-</html>
+{% endblock %}

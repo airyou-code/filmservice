@@ -17,8 +17,6 @@ def search_page(request):
         if request.GET.get(f'param_{i.id}') == None:
             continue
         param.append(request.GET.get(f'param_{i.id}'))
-
-    print(param)
     vector = SearchVector('name', weight='A') + SearchVector('description', weight='B') + SearchVector('id_film', weight='A')
     # query = SearchQuery(q)
     # film = Film.objects.annotate(rank=SearchRank(vector, query)).filter(search=SearchQuery(q))
@@ -40,7 +38,6 @@ def search_film(request):
     # film = Film.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
     ganers = Ganer.objects.all()
     film = Film.objects.all()
-    print(request.GET.get("search","человек"))
     return render(request, 'film/search.html', {"films":film, "ganers":ganers})
 
 def search_popup(request):

@@ -13,7 +13,7 @@
                 <!-- <input type="button" onclick="history.back();" value="Назад" /> -->
 
             <div class="row" >
-                <div class="col-4" >
+                <div class="col-lg-4 col-12" >
                     <div class="cell" style="text-align: center;">
                         {% if film.rating != "none" %}
                         <div style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right, rgb(242, 133, 0), rgb(243, 213, 18)); text-align: center;">
@@ -23,7 +23,7 @@
                         <img src="{{film.url_img}}" style="height: 450px; width: 300px; z-index: 50; border-radius: 5px;" alt="">
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-lg-8 col-12 mx-lg-0 mx-5">
                     <p style="display: inline-block; font-weight:900; font-size:35px;">{{film.name}}</p> <h4 style="display: inline-block"> ({{film.yearProd}})</h4>
 
                     {% if film.angl_name != "none" %}
@@ -31,7 +31,7 @@
                     {% else %}
                     <br>
                     {% endif %}
-                    <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="buttonClick()" data-click-kinoplayer="kinoplayertop-videocdn" >
+                    <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="document.getElementById('footer').scrollIntoView(false)" >
                         <span style="display: flex; padding-right: 5px; padding-left: 11.5px;">
                             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
                                 stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -44,56 +44,69 @@
                     <p style="font-weight:750; font-size:25px;">О фильме</p>
 
                     {% if film.country != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Страны</div>
-                        <div> {{film.country}}</div>
+                    <div class="d-flex align-items-baseline">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Страны</p>
+                        </div>
+                        <p class="fs-6">{{film.country}}</p>
+                        <!-- <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Страны</div> -->
+                        <!-- <div> {{film.country}}</div> -->
                     </div>
                     {% endif %}
 
                     {% if film.genre != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Жанр</div>
-                        <div> {{film.genre}}</div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Жанр</p>
+                        </div>
+                        <p class="fs-6">{{film.genre}}</p>
                     </div>
                     {% endif %}
 
                     {% if film.Age != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Возраст</div>
-                        <div> {{film.Age}}</div>
-                    </div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Возраст</p>
+                        </div>
+                        <p class="fs-6">{{film.Age}}</p>
                     {% endif %}
 
                     {% if film.time != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Время</div>
-                        <div> {{film.time}}</div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Время</p>
+                        </div>
+                        <p class="fs-6">{{film.time}}</p>
                     </div>
                     {% endif %}
 
                     {% if film.Budget != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Бюджет</div>
-                        <div> {{film.Budget}}</div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Бюджет</p>
+                        </div>
+                        <p class="fs-6">{{film.Budget}}</p>
                     </div>
                     {% endif %}
 
                     {% if film.Fees != "none"%}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Сборы в мире</div>
-                        <div> {{film.Fees}}</div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Сборы в мире</p>
+                        </div>
+                        <p class="fs-6">{{film.Fees}}</p>
                     </div>
                     {% endif %}
 
                     {% if film.Fees != "none" %}
-                    <div style="display: flex; align-items: baseline; padding-bottom: 15px;">
-                        <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Премьера в мире</div>
-                        <div> {{film.premiere}}</div>
+                    <div class="d-flex align-items-baseline ">
+                        <div style="width: 160px;">
+                            <p class="text-dark text-opacity-50 fs-6">Премьера в мире</p>
+                        </div>
+                        <p class="fs-6">{{film.premiere}}</p>
                     </div>
                     {% endif %}
-
-
-                </div>
+                    </div>
 
             </div>
             <div class="col-12 mt-5">
@@ -169,30 +182,33 @@
                 {% endfor %}
             </div>
 
-                <!-- <script>
-                    function buttonClick() {
-                        document.getElementById("blockbut").setAttribute("style", "");
-                        document.getElementById('film').scrollIntoView(false);
+                <script>
+                    function changePlayer() {
+                        document.getElementById("kinoplayertop").setAttribute("data-player", "videocdn");
+                        // document.getElementById('film').scrollIntoView(false);
                     }
-                </script> -->
-            <script src="//kinoplayer.top/top.js"></script>
+                </script>
+                <!-- <div id="kinoplayertop" data-kinopoisk="1309570"></div> -->
+                <!-- <div id="kinoplayertop" data-kinopoisk="1309570"></div>
+                <script src="//kinoplayer.top/top.js"></script> -->
             <div class="row">
                 <div class="col-1"></div>
-                <div id="film" class="col-10 mb-5">
+                <div id="film" class="col-10 mb-5" >
                     <div id="blockbut" class="btn-group" style="display: none;">
-                        <button type="button" class="buttonPlayer" data-click-kinoplayer="kinoplayertop-videocdn">Смотреть</button>
-                        <button type="button" class="buttonPlayer " data-click-kinoplayer="kinoplayertop-ustore">Плеер 2</button>
-                        <button type="button" class="buttonPlayer " data-click-kinoplayer="kinoplayertop-tabus">Плеер 3</button>
-                        <button type="button" class="buttonPlayer " data-click-kinoplayer="kinoplayertop-bazon">Плеер 4</button>
-                        <button type="button" class="buttonPlayer" data-click-kinoplayer="kinoplayertop-trailer">Трейлер</button>
+                        <!-- <button type="button" class="buttonPlayer" active data-click-kinoplayer="kinoplayertop" >Смотреть</button>
+                        <button type="button" class="buttonPlayer" data-click-kinoplayer="kinoplayertop-videocdn">Плеер 2</button> -->
+                        <button type="button" class="buttonPlayer" >Плеер 3</button>
+                        <button type="button" class="buttonPlayer" >Плеер 4</button>
+                        <button type="button" class="buttonPlayer" >Трейлер</button>
                     </div>
                     
-                    <div id="kinoplayertop-videocdn" data-kinopoisk="{{film.id_film}}" data-player="videocdn"></div>
-                    <div id="kinoplayertop-ustore" data-kinopoisk="{{film.id_film}}" data-player="ustore"></div>
+                    <div id="kinoplayertop" data-kinopoisk="{{film.id_film}}" data-player="bazon"></div>
+                    <!-- <div id="kinoplayertop-videocdn" data-kinopoisk="{{film.id_film}}" data-player="videocdn"></div> -->
+                    <!-- <div id="kinoplayertop-ustore" data-kinopoisk="{{film.id_film}}" data-player="ustore"></div>
                     <div id="kinoplayertop-tabus" data-kinopoisk="{{film.id_film}}" data-player="tabus"></div>
                     <div id="kinoplayertop-bazon" data-kinopoisk="{{film.id_film}}" data-player="bazon"></div>
-                    <div id="kinoplayertop-trailer" data-kinopoisk="{{film.id_film}}" data-player="trailer"></div>
-
+                    <div id="kinoplayertop-trailer" data-kinopoisk="{{film.id_film}}" data-player="trailer"></div> -->
+                    <script src="//kinoplayer.top/top.js"></script>
                     
                 </div>
                 <div class="col-1"></div>

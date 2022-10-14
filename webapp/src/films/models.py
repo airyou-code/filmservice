@@ -89,7 +89,9 @@ class Film(models.Model):
     
     def get_description_to_main(self):
         if len(self.description) > 300:
-            return self.description[:300]+"..."
+            if len(self.name) > 22:
+                return self.description[:226]+"..."
+            return self.description[:274]+"..."
         return self.description       
 
 
