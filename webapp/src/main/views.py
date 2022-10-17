@@ -49,6 +49,10 @@ def index(request):
     # return render(request, 'main/game.html', {"game": game[0]})
     pass
 
+def movies_page(request):
+    return render(request, "film/movi_page.html")
+    pass
+
 
 def pars_film(request):
     # films = ['1282688', '4400203', '558393', '1219909', '572032', '1322324', '1115098', '1309570', '4368595',
