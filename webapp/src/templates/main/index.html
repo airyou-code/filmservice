@@ -106,29 +106,22 @@
 
 </div>
 
-<div class="w-100" style="
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    background: #fff;
-    position: relative;
-    margin-top: 80vh;
-    z-index: 1010;">
-    <div class="container-xl">
+<div class="pr-main-page w-100">
+    <div class="container-xl mt-5">
         <p style="font-weight:700; font-size: 30px;">Новые фильмы</p>
         <div class="row">
             {% for i in films %}
             <div id="{{i.id_film}}" class="col-xxl-2 col-md-3 col-sm-6 justify-content-center p-2">
                 <a href="film/{{i.id_film}}/" class="a">
                     <div style="width: 200px; margin: auto;">
-                        <div style="margin: auto; height: 300px; width: 200px;
+                        <div class="scale shadow rounded" style="margin: auto; height: 300px; width: 200px;
                         background: url({{i.url_img}});
                         background-size: cover !important;
                         background-position: center !important;
                         flex-wrap: wrap;">
                         
                         </div>
-                        <p class="my-2 fw-semibold fs-5" >{{i.name}}</p>
+                        <p class="my-2 fw-semibold fs-5 lh-1" >{{i.name}}</p>
                         <p class="my-2 fs-6 text-opacity-50" >{{i.yearProd}}</p>
                     </div>
                     <!-- <div class="justify-content-center">

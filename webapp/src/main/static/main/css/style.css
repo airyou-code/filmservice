@@ -11,7 +11,19 @@
 
 }
 
+p {
+    color: white;
+}
 
+.pr-main-page {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(17,17,17);
+    position: relative;
+    margin-top: 80vh;
+    z-index: 1010;
+}
 
 .buttonWatch {
     display: inline;
@@ -90,6 +102,18 @@
     outline: none;
     /* box-shadow: 0 0 0 4px #cbd6ee; */
     background: rgb(139, 41, 41);
+}
+
+.a-red {
+    color: #ffffff;
+    text-decoration: none;
+}
+.a-red:visited {
+    color: #ffffff;
+}
+.a-red:hover {
+    color: #ff0000;
+    text-decoration: none;
 }
 
 .a{
