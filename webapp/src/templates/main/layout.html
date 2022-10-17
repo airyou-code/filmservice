@@ -15,6 +15,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Noto+Sans:wght@500&family=Plus+Jakarta+Sans:wght@300&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src={% static "main/js/script.js" %}></script>
@@ -24,6 +27,17 @@
 </head>
 
 <body style="background-color: rgb(245, 245, 245);min-height: 100%;">
+<nav class="navbar px-5 py-2 text-light fixed-top" style="z-index: 3; background: linear-gradient(rgba(35, 35, 35, 0.5), rgba(153, 153, 153, 0));">
+        <div class="logo"></div>
+        <div class="menu-main-menu-container"> 
+            <ul class="nav">
+                <li class="nav-link px-3 text-white fw-bold" style="font-family: 'Poppins', sans-serif;">HOME</li>
+                <li class="nav-link px-3 text-white fw-bold" style="font-family: 'Poppins', sans-serif;">MOVIES</li>
+                <li class="nav-link px-3 text-white fw-bold"  style="font-family: 'Poppins', sans-serif;">TV-SHOWS</li>
+            </ul>
+        </div>
+        <div class="user-menu"></div>
+    </nav>
     <!-- <header class="bg-dark sticky-lg-top p-3">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -88,7 +102,7 @@
             </div>
         </div>
     </header> -->
-    <div style="min-height: 80vh">
+    <div style="min-height: 100vh">
         {% block content %}
         {% endblock %}
     </div>
@@ -97,6 +111,8 @@
         bottom: 0;
         width: 100%;
         height: 78px;
+        z-index: 100;
+        position: relative;
         background-color: rgb(32, 25, 48);  "></footer>
 </body>
 </html>

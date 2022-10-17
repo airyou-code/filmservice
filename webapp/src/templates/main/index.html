@@ -32,50 +32,24 @@
                 background-position: center !important;
                 z-index: 99;"></div>
                 <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="z-index: 100; ">
-                    <div class="container-xl">
-                        <div class="row">
-                            <div class="col-6">
-                                <h1>{{first.1.name}}</h1>
-                                <p class="mt-4 fs-1 text-light fw-bold">{{first.1.name}}</p>
-                                <svg class="circle-chart" viewBox="0 0 30 30" width="40" height="40" fill="transparent"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style="width: 40px;
-                                            height: 40px;
-                                            line-height: 40px;
-                                            text-align: center;
-                                            position: absolute;
-                                            left: 0;
-                                            top: 0;
-                                            font-size: 13px;">
-                                    <circle class="circle-chart__background" stroke="#eee" stroke-width="2" fill="none" cx="15" cy="15" r="14"></circle>
-                                    <circle class="circle-chart__circle" stroke="#4eb04b" stroke-width="2" stroke-dasharray="63,100" cx="15" cy="15"
-                                        r="14"></circle>
-                                </svg>
-                                <b class="text-light" style="width: 40px;
-                                    height: 40px;
-                                    line-height: 40px;
-                                    text-align: center;
-                                    position: absolute;
-                                    left: 0;
-                                    top: 0;
-                                    font-size: 13px;">7,9</b>
-                                <p class="mt-4 fs-4 text-light text-opacity-75">
-                                    {{first.1.get_description_to_main}}</p>
+                    <div class="container-xl" style="margin-top: 10vh">
+                        
+                            <p class="mt-4 text-light lh-sm fw-bold name">{{first.1.name}}</p>                                
+                            
+                            <p class="mt-3 w-50  fs-4 text-light text-opacity-75 lh-sm descript">
+                                {{first.1.get_description_to_main}}</p>
             
-                                <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{first.1.id_film}}')"
-                                    style="background-color: rgb(63, 37, 155);">
-                                    <span style="display: flex; padding-right: 5px; padding-left: 11px;">
-                                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-                                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                        </svg>
-                                    </span> Смотреть
-                                </button>
-            
-                            </div>
-                            <div class="col-6"></div>
-                        </div>
+                            <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{first.1.id_film}}')"
+                                style="background-color: rgb(63, 37, 155);">
+                                <span style="display: flex; padding-right: 5px; padding-left: 11px;">
+                                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                        stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </span> Смотреть
+                            </button>                                                                         
+                                                 
                     </div>
                 </div>
             
@@ -92,27 +66,21 @@
                     background-position: center !important;
                     z-index: 99;"></div>
                 <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="height: 500px; z-index: 100;">
-                    <div class="container-xl">
-                        <div class="row">
-                            <div class="col-6" style="color: rgb(255, 255, 255);">
-                                <p class="mt-4 fs-1 text-light fw-bold">{{film.1.name}}</p>
-                                <p class="mt-4 fs-4 text-light text-opacity-75">
-                                    {{film.1.get_description_to_main}}</p>
-                
-                                <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{film.1.id_film}}')"
-                                    style="background-color: rgb(63, 37, 155);">
-                                    <span style="display: flex; padding-right: 5px; padding-left: 11px;">
-                                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-                                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                        </svg>
-                                    </span> Смотреть
-                                </button>
-                
-                            </div>
-                            <div class="col-6"></div>
-                        </div>
+                    <div class="container-xl" style="margin-top: 10vh">
+                            <p class="mt-4 text-light fw-bold lh-sm name">{{film.1.name}}</p>                            
+                            <p class="mt-3 w-50 fs-4 text-light text-opacity-75 lh-sm">
+                                {{film.1.get_description_to_main}}</p>
+            
+                            <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{film.1.id_film}}')"
+                                style="background-color: rgb(63, 37, 155);">
+                                <span style="display: flex; padding-right: 5px; padding-left: 11px;">
+                                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                        stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </span> Смотреть
+                            </button>                                
                     </div>
                 </div>
 
@@ -152,11 +120,20 @@
             {% for i in films %}
             <div id="{{i.id_film}}" class="col-xxl-2 col-md-3 col-sm-6 justify-content-center p-2">
                 <a href="film/{{i.id_film}}/" class="a">
-                    <div class="justify-content-center">
-                        <img class="scale shadow rounded" style="height: 300px; width: 200px" src="{{i.url_img}}"  alt="">
+                    <div style="width: 200px; margin: auto;">
+                        <div style="margin: auto; height: 300px; width: 200px;
+                        background: url({{i.url_img}});
+                        background-size: cover !important;
+                        background-position: center !important;
+                        flex-wrap: wrap;">
+                        
+                        </div>
                         <p class="my-2 fw-semibold fs-5" >{{i.name}}</p>
                         <p class="my-2 fs-6 text-opacity-50" >{{i.yearProd}}</p>
                     </div>
+                    <!-- <div class="justify-content-center">
+                        <img class="scale shadow rounded" style="height: 300px; width: 200px" src="{{i.url_img}}"  alt="">
+                    </div> -->
                 </a>
             </div>
             {% endfor %}
