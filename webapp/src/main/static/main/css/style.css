@@ -8,8 +8,13 @@
     .descript {
         display: none;
     }
-
+    .cell_name {
+        font-size: 1.10rem !important;
+    }
 }
+
+
+
 
 p {
     color: white;
@@ -21,7 +26,17 @@ p {
     flex-wrap: wrap;
     background: rgb(17,17,17);
     position: relative;
-    margin-top: 80vh;
+    margin-top: 60vh;
+    z-index: 1010;
+}
+
+.pr-film-page {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* background: rgb(17, 17, 17); */
+    position: relative;
+    margin-top: 50px;
     z-index: 1010;
 }
 
