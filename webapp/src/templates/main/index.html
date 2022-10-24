@@ -34,9 +34,9 @@
                 <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="z-index: 100; ">
                     <div class="container-xl" style="margin-top: 10vh">
                         
-                            <p class="mt-4 text-light lh-sm fw-bold name">{{first.1.name}}</p>                                
+                            <p class="mt-4 text-light lh-sm fw-bold name-carouse">{{first.1.name}}</p>                                
                             
-                            <p class="mt-3 w-50  fs-4 text-light text-opacity-75 lh-sm descript">
+                            <p class="mt-3 w-50  fs-4 text-light text-opacity-75 lh-sm descript-carouse">
                                 {{first.1.get_description_to_main}}</p>
             
                             <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{first.1.id_film}}')"
@@ -67,8 +67,8 @@
                     z-index: 99;"></div>
                 <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="height: 500px; z-index: 100;">
                     <div class="container-xl" style="margin-top: 10vh">
-                            <p class="mt-4 text-light fw-bold lh-sm name">{{film.1.name}}</p>                            
-                            <p class="mt-3 w-50 fs-4 text-light text-opacity-75 lh-sm descript">
+                            <p class="mt-4 text-light fw-bold lh-sm name-carouse">{{film.1.name}}</p>                            
+                            <p class="mt-3 w-50 fs-4 text-light text-opacity-75 lh-sm descript-carouse">
                                 {{film.1.get_description_to_main}}</p>
             
                             <button id="buttonWatch" class="buttonWatch my-2 mb-3" onclick="linkFilm('{{film.1.id_film}}')"
@@ -91,11 +91,11 @@
             {% endfor %}
 
         </div>
-        <button id="nextbutton" class="carousel-control-prev" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <button id="nextbutton" class="carousel-control-prev btn-carousel" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Предыдущий</span>
         </button>
-        <button class="carousel-control-next px-0" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <button class="carousel-control-next px-0 btn-carousel" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Следующий</span>
         </button>

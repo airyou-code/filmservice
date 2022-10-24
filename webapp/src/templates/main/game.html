@@ -39,13 +39,13 @@
                 <!-- <input type="button" onclick="history.back();" value="Назад" /> -->
 
             <div class="row" >
-                <div class="col-lg-4 col-12" >
+                <div class="col-lg-4 col-5" >
                         {% if film.rating != "none" %}
-                        <div style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right, rgb(242, 133, 0), rgb(243, 213, 18)); text-align: center;">
+                        <div class="rating-film" style="height: 40px; width: 50px; z-index: 100; margin-left: 48px; margin-top: 9px; border-radius: 5px; position:absolute; background: linear-gradient(to top right, rgb(242, 133, 0), rgb(243, 213, 18)); text-align: center;">
                             <p style="padding-top: 5px; color: rgb(255, 255, 255); font-weight:800; font-size: 20px;">{{film.rating}}</p>
                         </div>
                         {% endif %}
-                        <div class="mx-5">
+                        <div class="mx-lg-5 mx-0">
                             <div class=" rounded" 
                                 style="margin: auto; padding-top: 147.06%; width: 100%;
                                         background: url({{film.url_img}});
@@ -55,12 +55,12 @@
                         </div>
                         <!-- <img src="{{film.url_img}}" style="height: 450px; width: 300px; z-index: 50; border-radius: 5px;" alt=""> -->
                 </div>
-                <div class="col-lg-8 col-12 mx-lg-0 mx-5 text-light">
-                    <p class="d-sm-inline" style=" font-weight:900; font-size:35px;">{{film.name}}</p>
-                    <h4 class="d-sm-inline"> ({{film.yearProd}})</h4>
+                <div class="col-lg-8 col-7 mx-lg-0 mx-0 text-light">
+                    <p class="d-sm-inline name-film">{{film.name}}</p>
+                    <h4 class="d-sm-inline year-film"> ({{film.yearProd}})</h4>
 
                     {% if film.angl_name != "none" %}
-                    <p class="text-light text-opacity-50" style="font-size:20px; font-weight:300;">{{film.angl_name}}</p>
+                    <p class="text-light text-opacity-50 angl-name-film">{{film.angl_name}}</p>
                     {% else %}
                     <br>
                     {% endif %}
@@ -74,15 +74,15 @@
                     </button>
 
 
-                    <p style="font-weight:750; font-size:25px;">О фильме</p>
+                    <p class="name-film">О фильме</p>
 
                     {% if film.country != "none" %}
                     <div class="d-flex align-items-baseline">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Страны</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Страны</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.country}}</p>
+                            <p class="fs-6 param-info-film ">{{film.country}}</p>
                         </div>
                         <!-- <div style="width: 160px;font-size:16px; color: rgba(0, 0, 0, 0.4);">Страны</div> -->
                         <!-- <div> {{film.country}}</div> -->
@@ -92,10 +92,10 @@
                     {% if film.genre != "none" %}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Жанр</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Жанр</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6 text-wrap ">{{film.genre}}</p>
+                            <p class="fs-6 param-info-film ">{{film.genre}}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -103,10 +103,10 @@
                     {% if film.Age != "none" %}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Возраст</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Возраст</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.Age}}</p>
+                            <p class="fs-6 param-info-film ">{{film.Age}}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -114,10 +114,10 @@
                     {% if film.time != "none" %}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Время</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Время</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.time}}</p>
+                            <p class="fs-6 param-info-film ">{{film.time}}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -125,10 +125,10 @@
                     {% if film.Budget != "none" %}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Бюджет</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Бюджет</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.Budget}}</p>
+                            <p class="fs-6 param-info-film ">{{film.Budget}}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -136,10 +136,10 @@
                     {% if film.Fees != "none"%}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Сборы в мире</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Сборы в мире</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.Fees}}</p>
+                            <p class="fs-6 param-info-film ">{{film.Fees}}</p>
                         </div>
                     </div>
                     {% endif %}
@@ -147,10 +147,10 @@
                     {% if film.Fees != "none" %}
                     <div class="d-flex align-items-baseline ">
                         <div style="width: 160px;">
-                            <p class="text-light text-opacity-50 fs-6">Премьера в мире</p>
+                            <p class="text-light text-opacity-50 fs-6 param-film">Премьера в мире</p>
                         </div>
                         <div class="w-100">
-                            <p class="fs-6">{{film.premiere}}</p>
+                            <p class="fs-6 param-info-film ">{{film.premiere}}</p>
                         </div>
                     </div>
                     {% endif %}
