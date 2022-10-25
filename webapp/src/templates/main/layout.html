@@ -30,9 +30,18 @@
 </head>
 
 <body style="background-color: rgb(245, 245, 245);min-height: 100%;">
-    <nav class="navbar px-5 py-2 text-light fixed-top" style="z-index: 3; background: linear-gradient(rgba(35, 35, 35, 0.5), rgba(153, 153, 153, 0));">
-        <div class="container">      
+    <nav class="pc-navbar navbar px-5 py-2 text-light fixed-top" style="z-index: 3; background: linear-gradient(rgba(35, 35, 35, 0.5), rgba(153, 153, 153, 0));">
+        <div class="container-xl">
             <div class="logo">
+                <div style="width: 30px; height: 30px;"  type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </div>
+                    <!-- <button type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Включить прокрутку и фон</button> -->
 
             </div>
             <div class="menu-main-menu-container"> 
@@ -45,8 +54,73 @@
                 </ul>
             </div>
             <div class="user-menu"></div>
+            
+
         </div>
     </nav>
+        <nav class="mobile-navbar navbar px-5 py-2 text-light fixed-top" style="z-index: 3; background: linear-gradient(rgba(35, 35, 35, 0.5), rgba(153, 153, 153, 0));">
+                
+                    <div class="logo"></div>
+                    <div class="menu-main-menu-container"> 
+                        <ul class="nav">
+                            <li class="nav-link px-3 mx-3 text-white fw-bold nav-item" style="font-family: 'Poppins', sans-serif;">
+                                <a class="a-red" href="/account/login/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    </svg>                               
+                                </a>
+                                
+                            </li>
+                            <li class="nav-link px-3 mx-3 text-white fw-bold nav-item" style="font-family: 'Poppins', sans-serif;">
+                            <a class="a-red" href="/">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>    
+                                </svg>
+                            </a>
+                            </li>
+                            <li class="nav-link px-3 mx-3 text-white fw-bold nav-item"  style="font-family: 'Poppins', sans-serif;">
+                                <div  type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasWithBothOptions"
+                                    aria-controls="offcanvasWithBothOptions">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg> 
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                    </svg> -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="user-menu"></div>
+         </nav>
+        <div class="offcanvas offcanvas-start" style="background-color: rgb(32, 32, 32);" data-bs-scroll="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title text-light" id="offcanvasWithBothOptionsLabel">Поиск</h5>
+                <button style="color: white; background-color: rgba(0, 0, 0, 0); border: 0px;" data-bs-dismiss="offcanvas" aria-label="Закрыть">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="offcanvas-body">
+                                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="min-width: 43%;">
+                        <input type="search" 
+                        class="form-control me-2"
+                        placeholder="Search..."
+                            name="q"
+                            hx-get="/film/search_popup/"
+                            hx-trigger="keyup changed delay:150ms"
+                            hx-target="#search-popup">
+                    </form>
+                    <div style="min-width: 100%">
+                        <div class="container">
+                            <div id="search-popup" style="background-color: rgb(45, 45, 45);"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
     <!-- <header class="bg-dark sticky-lg-top p-3">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

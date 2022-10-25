@@ -2,23 +2,45 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="text-center my-5 px-md-5">
-    <main class="form-signin w-100 m-auto px-md-5 px-2">
-        <div class="row">
-            <div class="col-lg-4 col-md-2 col-0"></div>
-            <div class="col-lg-4 col-md-8 col-12  px-lg-5 px-md-2" style="padding-left: 10px; padding-right: 10px;">
+<div style="width: 100%; background-color: rgb(17,17,17);">
+    <div class="text-center my-5 px-md-5">
+        <main class="form-signin w-100 m-auto px-md-5 px-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-2 col-0"></div>
+                <div class="col-lg-4 col-md-8 col-12  px-lg-5 px-md-2" style="padding-left: 10px; padding-right: 10px;">
 
-                <div class="my-5" id="content">
-                    <h1 class="py-2">Log-in</h1>
-                    <form method="post">
-                        {{ form|crispy }}
-                        {% csrf_token %}
-                        <button class="w-100 my-3 btn btn-lg btn-primary" type="submit">Login</button>
-                    </form>
-                </div>        
+                    <div class="my-5" id="content">
+                        {% if user.is_authenticated %}
+                            <li style="color: rgb(255, 255, 255)"><a style="color:rgb(255, 255, 255)" href="">hi,&#160;{{ user.username }}</a></li>
+                        {% endif %}
+                        <h1 class="py-2">Log-in</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                            <div class="form-floating">
+                                <input type="login" class="form-control" id="floatingInput" name="name" placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingPassword" name="pasword" placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> Remember me
+                                </label>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                            <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+                            <button class="w-100 my-3 btn btn-lg btn-primary" type="submit">Login</button>
+                        </form>
+                    </div>        
+                </div>
+                <div class="col-lg-4 col-md-2 col-0"></div>
             </div>
-            <div class="col-lg-4 col-md-2 col-0"></div>
-        </div>
-    </main>
+        </main>
+    </div>
 </div>
 {% endblock %}

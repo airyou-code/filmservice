@@ -1,5 +1,6 @@
 .name-carouse {
-    font-size: 80px;
+    font-size: 60px;
+    line-height: 1.15!important;
 }
 .param-film {
     --bs-text-opacity: 0.5;
@@ -20,6 +21,21 @@
     font-size: 20px;
     font-weight: 300;
 }
+
+.mobile-navbar {
+    display: none;
+}
+@media screen and (max-width: 425px){
+    .mobile-navbar {
+        display: flex;
+    }
+    .pc-navbar {
+        display: none;
+    }
+
+
+}
+
 
 @media screen and (max-width: 768px) {
     .name-carouse {
