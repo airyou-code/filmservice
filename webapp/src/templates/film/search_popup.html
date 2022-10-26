@@ -1,29 +1,24 @@
 {% for film in films %}
-    <div class="col-12" style="height: 120px; border-top: 1px solid rgba(0,0,0,0.1);">
-        <div class="row p-2">
+    <!-- <div class="col-12" style="border-top: 1px solid rgba(0,0,0,0.1);"> -->
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,0.1);">
             <div class="col-3"> 
-                <span style="width: 64px; height: 96px;">
-                    <a href="/film/{{ film.id_film }}/" class="a">
-                        <div class="shadow rounded" style="margin: auto; padding-top: 147.06%; width: 100%;
-                            background: url({{film.url_img}});
-                            background-size: cover !important;
-                            background-position: center !important;
-                            flex-wrap: wrap;"></div>
-                        <!-- <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}"> -->
-                    </a>
-                </span>
+                <a href="/film/{{ film.id_film }}/" class="a">
+                    <div class="shadow rounded mx-1 my-2 w-100" style="margin: auto; padding-top: 147.06%;
+                        background: url({{film.url_img}});
+                        background-size: cover !important;
+                        background-position: center !important;
+                        flex-wrap: wrap;"></div>
+                    <!-- <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}"> -->
+                </a>
             </div>
             <div class="col-9">
                 <a href="/film/{{ film.id_film }}/" class="a">
                     <p style="font-weight: 600; color: rgb(255, 255, 255);" >{{ film.name }}</p>
                     <p style="font-size: 10px; color: rgb(255, 255, 255);">{{ film.get_description_to_search }}</p>
                 </a>
-                </div>
-
-
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 {% endfor %}
 
 {% if q != "" %}

@@ -125,19 +125,20 @@
     }
 }
 
-
+.bg-black{background-color: #192028 !important;}
+.bg-gray{background-color: #2D3949 !important;}
 
 
 
 p {
-    color: white;
+    color: white !important;
 }
 
 .pr-main-page {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    background: rgb(17,17,17);
+    background: #192028;
     position: relative;
     margin-top: 60vh;
     z-index: 1010;
