@@ -1,24 +1,21 @@
 
 {% for film in films %}
-    <div class="col-12" style="height: 128px; border-top: 1px solid rgba(0,0,0,0.1);">
-        <div class="row p-3">
-            <div class="col-2"> 
-                <span style="width: 64px; height: 96px;">
+        <div class="row" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="col-lg-2 col-3 px-3 py-2"> 
                     <a href="/film/{{ film.id_film }}/" class="a">
-                        <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}">
+                        <div class="shadow rounded w-100" style="margin: auto; padding-top: 147.06%;
+                            background: url({{film.url_img}});
+                            background-size: cover !important;
+                            background-position: center !important;
+                            flex-wrap: wrap;"></div>
+                        <!-- <img style="width: 64px; height: 96px;" src="{{ film.url_img }}" alt="{{ film.name }}"> -->
                     </a>
-                </span>
             </div>
-            <div class="col-6">
+            <div class="col-lg-9 col-8">
                 <a href="/film/{{ film.id_film }}/" class="a">
                     <p style="font-weight: 600; " >{{ film.name }}</p>
                     <p style="font-size: 10px;">{{ film.get_description_to_search }}</p>
                 </a>
-                </div>
-
-            <div class="col-4">
-
             </div>
         </div>
-    </div>
 {% endfor %}
