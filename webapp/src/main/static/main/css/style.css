@@ -125,9 +125,32 @@
     }
 }
 
-.bg-black{background-color: #192028 !important;}
-.bg-gray{background-color: #2D3949 !important;}
+.bgm-black{background-color: #192028 !important;}
+.bgm-gray{background-color: #2D3949 !important;}
 
+.tablink {
+    background-color: #192028;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 30%;
+}
+
+.tablink:hover {
+    background-color: #192028;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+}
 
 
 p {
