@@ -47,16 +47,19 @@
                 </div>
                 <div class="col justify-content-center d-flex" style="width: 33% !important;">
                     <div class="w-100" style="width: fit-content; background-color: rgba(127, 255, 212, 0);">
-                        <input class="rounded search-input form-control w-100 bgm-gray"
+                        <form>
+                        <input class="rounded search-input w-100 bgm-gray"
                             name="q"
                             hx-get="/film/search_popup/"
                             hx-trigger="keyup changed delay:150ms"
-                            hx-target="#search-popup" 
-                            style=" border-color: rgba(255, 255, 255, 0.171); color: aliceblue; height: 40px;" 
+                            hx-target="#m-search-popup" 
+                            style=" border-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); height: 40px; padding: 0.375rem 0.75rem;" 
                             placeholder="Search..." 
                             type="search">
-                        <div class="mt-2 rounded bgm-gray" style="position: absolute;">
-                            <div id="search-popup"></div>
+                        </form>
+                        <div class="mt-2 rounded bgm-gray position-relative" style="z-index: 8;    display: flex;
+    flex-wrap: wrap;">
+                            <div id="m-search-popup"></div>
                         </div>
                     </div>
     

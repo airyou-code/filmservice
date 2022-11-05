@@ -171,7 +171,7 @@ p {
     background: #192028;
     position: relative;
     margin-top: 60vh;
-    z-index: 10;
+    z-index: 7;
 }
 
 .pr-film-page {
@@ -181,7 +181,7 @@ p {
     /* background: rgb(17, 17, 17); */
     position: relative;
     margin-top: 50px;
-    z-index: 1010;
+    z-index: 7;
 }
 
 .buttonWatch {

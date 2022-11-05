@@ -31,8 +31,8 @@
                 background: url({{first.0.img.url}});
                 background-size: cover !important;
                 background-position: center !important;
-                z-index: 99;"></div>
-                <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="z-index: 100; ">
+                z-index: 2;"></div>
+                <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="z-index: 3; ">
                     <div class="container-xl" style="margin-top: 10vh">
                         
                             <p class="mt-4 text-light lh-sm fw-bold name-carouse">{{first.1.name}}</p>                                
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             
-                <img src="" class="w-100 min-vh-100" style=" width: -webkit-fill-available; z-index: 10;"
+                <img src="" class="w-100 min-vh-100" style=" width: -webkit-fill-available; z-index: 0;"
                     class="d-block w-100" alt="">
             
             </div>
@@ -65,8 +65,8 @@
                     background: url({{film.0.img.url}});
                     background-size: cover !important;
                     background-position: center !important;
-                    z-index: 99;"></div>
-                <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="height: 500px; z-index: 100;">
+                    z-index: 1;"></div>
+                <div class="w-100 position-absolute bg-dark bg-opacity-50 h-100" style="height: 500px; z-index: 2;">
                     <div class="container-xl" style="margin-top: 10vh">
                             <p class="mt-4 text-light fw-bold lh-sm name-carouse">{{film.1.name}}</p>                            
                             <p class="mt-3 w-50 fs-4 text-light text-opacity-75 lh-sm descript-carouse">
@@ -85,18 +85,18 @@
                     </div>
                 </div>
 
-                <img src="" style=" width: -webkit-fill-available; z-index: 10;" class="d-block w-100 vh-100" alt="{{backImg.img.url}}">
+                <img src="" style=" width: -webkit-fill-available; z-index: 0;" class="d-block w-100 vh-100" alt="{{backImg.img.url}}">
             
             </div>
             {% endif %}
             {% endfor %}
 
         </div>
-        <button id="nextbutton" class="carousel-control-prev btn-carousel" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <button id="nextbutton" class="carousel-control-prev btn-carousel" style="z-index: 4; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Предыдущий</span>
         </button>
-        <button class="carousel-control-next px-0 btn-carousel" style="z-index: 110; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <button class="carousel-control-next px-0 btn-carousel" style="z-index: 4; width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Следующий</span>
         </button>
