@@ -1,6 +1,7 @@
 
 {% extends 'main/layout.html' %}
 {% block content %}
+{% load i18n %}
 
 <div class="preloader">
     <svg class="preloader__image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -108,7 +109,7 @@
 
 <div class="pr-main-page w-100">
     <div class="container-xl mt-5">
-        <p style="font-weight:700; font-size: 30px;">Новые фильмы</p>
+        <p style="font-weight:700; font-size: 30px;">{% trans 'WelcomeHeading' %}</p>
         <div class="row">
             {% for i in films %}
             <div id="{{i.id_film}}" class="col-xxl-2 col-md-3 col-6 justify-content-center p-2">
